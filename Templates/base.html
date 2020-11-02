@@ -1,0 +1,147 @@
+<html>
+<head>
+	{% if title %}
+    <title>{{ title }}</title>
+	{% else %}
+	<title>Blockchain Explorer</title>
+	{% endif %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='main.css') }}">
+    <style>
+        :root {
+			--font-color: #FFFFFF;
+			--header-bg-color: #101010;
+			--main-font: font-family: "Arial", Helvetica, sans-serif;
+			--title-size: 20px;
+			--border-color: #101010;
+			--link-color: #1569C7;
+			--button-color: #1569C7;
+			--padding: 20px; 
+        }
+
+		body, html { padding: 0; margin: 0; }
+		body { background: #000000; }
+        * { font-family: "Arial", Helvetica, sans-serif; color: var(--font-color); font-size: 15px; }
+
+        #header {
+            background: var(--header-bg-color);
+            color: var(--font-color);
+			font-size: var(--title-size);
+            padding: 10px;
+        }
+		
+		#header_sub_box {
+			margin: 0 auto;
+			width: 1100px;
+			display: flex;
+			
+		}
+		
+		#block_info {
+			margin: 0 auto;
+			position: relative;
+			top: 50px;
+			display: block; 
+			/* Using the padding amount from #content since we're not applying padding for this div */
+			width: calc(1100px + var(--padding));
+			margin-bottom: 30px;
+			background: #000000;
+		}
+
+		#content {
+			margin: 0 auto;
+			position: relative;
+			top: 50px;
+			display: block; 
+			width: 1100px;
+			border: 2px solid var(--border-color);
+			padding: 20px;
+			margin-bottom: 30px;
+			background: var(--header-bg-color);
+			line-height: 30px;
+		}
+		
+		.transaction_div {
+			display: inline-block;
+			width: 150px;
+			height: 100px;
+			text-align: center;
+			padding: 10px;
+			margin-right: 20px;
+			background: var(--header-bg-color);
+			line-height: 30px;
+		}
+		
+		.transaction_content {
+			position: relative;
+			width: 100%;
+			display: inline-block; 
+		}
+		
+		.transaction_sub_content:first-child {
+			width: 10%;
+			padding: 10px;
+			display: inline-block;
+		}
+		
+		.transaction_sub_content {
+			width: 20%;
+			display: inline-block;
+		}
+		
+		.block_sub_content:first-child {
+			width: 5%;
+			padding: 10px;
+			display: inline-block;
+		}
+		
+		.block_sub_content {
+			width: 20%;
+			padding: 10px;
+			display: inline-block; 
+		}
+		
+		.block_sub_height {
+			width: 5%;
+			padding: 10px;
+			display: inline-block; 
+			background: var(--link-color);
+			text-align: center;
+			color: #FFFFFF;
+		}
+		
+		.small { color: var(--link-color); }
+		.sub_form { 
+			background: var(--button-color);
+			padding: 5px;
+			border-radius: 2px;
+			border: None;
+		}
+		
+		a.nav_link:link {
+			text-decoration: None;
+			display: block;
+			padding-right: 10px;
+		}
+		
+		a.nav_link:first-of-type {
+			margin-left: 30px;
+			display: block
+		}
+		
+		a.nav_link:hover {
+			text-decoration: None;
+			color: var(--link-color);
+		}
+    </style>
+</head>
+<body>
+<div id="header">
+		<div id = "header_sub_box">
+			Blockchain Explorer
+			<a href="{{ url_for('send') }}" class="nav_link">Send</a>
+			<a href="{{ url_for('send') }}" class="nav_link">About</a>
+		</div>
+    </div>
+{% block content %} {% endblock %}
+</body>
+</html>

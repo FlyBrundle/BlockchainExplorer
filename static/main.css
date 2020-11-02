@@ -1,0 +1,18 @@
+:root {
+	--header-font-color: #FFFFFF;
+	--header-bg-color: #111111;
+	--font-famliy: 'Arial Narrow';
+}
+
+html, body { padding: 0; margin: 0; }
+body { background: #F5F5F5; }
+
+* { font-family: var(--font-family); }
+
+#header {
+	background: var(--header-bg-color);
+	font-color: var(--header-font-color);
+	padding: 10px;
+	display: flex;
+	align-items: ceter;
+}

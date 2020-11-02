@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div id="content">
+	
+		Your wallet: <span class="small">{{ wallet }}</span>
+		Available coins: {{ coins }}
+	</div>
+	
+	<div id="block_info">
+		<div class="transaction_div">
+			BLOCK HEIGHT <br />
+			{{ height }} 
+		</div>
+		
+		<div class="transaction_div">
+			<!-- For right now, we have one transaction per block -->
+			TRANSACTIONS <br />
+			{{ height }} 
+		</div>
+	</div>
+    
+	
+	<div id="content">
+		<div class="transaction_content">
+			<div class="block_sub_content">
+				Block # 
+			</div> 
+			<div class="block_sub_content">
+				Tx Hash
+			</div> 
+		</div>
+		{% for transaction in block_chain|reverse %}
+		<div class="transaction_content">
+			<div class="block_sub_height">
+				{{ loop.index }} 
+			</div>
+			<div class="block_sub_content">
+				<span class="small">{{ transaction }} </span>
+			</div>
+			<div class="block_sub_content">
+				<span class="small">{{ time }} </span>
+			</div>
+		</div>
+		{% endfor %}
+		
+		
+    </div>
+{% endblock %}
