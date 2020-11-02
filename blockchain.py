@@ -22,6 +22,7 @@ class Block(object):
         self.time = time
 
     def __str__(self):
+        ''' Displays block data '''
         return '{}-{}-{}-{}'.format(self.index, self.prev_hash, self.data, self.time)
 
     @property
@@ -31,7 +32,10 @@ class Block(object):
 
 class BlockChain(object):
     def __init__(self, nodes = set()):
-        # initial processing of our block
+        ''' Constructor for our blockchain. Using only the nodes paramter for the time being
+        
+        :param nodes: Set of possible running nodes
+        '''
         self.block_chain = []
         self.transaction_data = []
         self.nodes = nodes
@@ -66,6 +70,7 @@ class BlockChain(object):
 
     #constructs non-genesis blocks
     def construct_block(self):
+        ''' If len is greater than 1, construct a normal block '''
         block = Block(
             index=len(self.block_chain),
             prev_hash=self.last_block,
@@ -78,11 +83,11 @@ class BlockChain(object):
 
     # determines which block is added to the chain
     def add_block(self):
+        ''' Adds a block to the chain '''
         return self.construct_genesis() if len(self.block_chain) == 0 else self.construct_block()
 
     def validate_block(self):
-        # check to see if the previous hash is equal to current hash
-        # created as a list to add more conditions in the future
+        ''' Validates a block by compring the last block to the current hash '''
         validations = [(self.last_block != Block.calculate_hash)]
         if any(validations):
             return False
