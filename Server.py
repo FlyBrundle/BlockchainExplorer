@@ -3,27 +3,25 @@ import time
 import random
 import string
 import base64
-from wallet import Wallet
-from blockchain import Block, Blockchain
-
+try:
+    from wallet import Wallet
+    from blockchain import Block, Blockchain
+except ImportError:
+    print('Could not import. Check to see if the modules are properly installed.')
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'codex'
+app.config['SECRET_KEY'] = # secret key
 
 wallet = Wallet()
 block = BlockChain()
 block_ind = Block()
-sender = 1
-recipient = 2
+sender = wallet.address 
+recipient = 2 # just for testing purposes
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/home', methods=['GET', 'POST'])
 def hello():
-    # sent = 50
-    # block.transactions(wallet.wallet_address, recipient, sent)
-    # block.add_block()
-    # wallet.coins -= sent
-    # transaction data
+    ''' Router for the home page ''' 
     
     return render_template('home.html',
                            block_chain = sorted(block.block_chain, reverse = True), 
@@ -34,20 +32,16 @@ def hello():
                            time = block_ind.time.strftime('%m %d, %y, %H:%M:%S')
                             )
 
-# this signifies which page is being routed
-# /about in url
 @app.route('/about')
 def about():
+    ''' Router for the about page ''' 
     return render_template('about.html')
 
 @app.route('/send', methods = ['GET', 'POST'])
 def send():
-    ''' Page to send test coins to a sepcified address. '''
-    sent = 50
-    block.transactions(wallet.wallet_address, recipient, sent)
-    wallet.coins -= sent
-    form = SubmitForm()
+    ''' Router for the send page. '''
 
+    # process block if the button is pressed
     if request.method == 'GET':
         sent = 50
         block.transactions(wallet.wallet_address, recipient, sent)
